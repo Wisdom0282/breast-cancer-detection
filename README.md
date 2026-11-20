@@ -82,10 +82,22 @@ breast-cancer-detection/
 ## Usage
 
 ```bash
-pip install -r requirements.txt
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements-train.txt   # training needs pandas, matplotlib, seaborn too
 python train.py                      # trains and writes models/ and reports/
 python predict.py                    # demo on 5 random dataset rows
 python predict.py --csv new.csv      # CSV with the 30 WDBC feature columns
+python app.py                        # web app at http://127.0.0.1:5000
+```
+
+### Deploying to Vercel
+
+`app.py` exposes a Flask `app`, which is what Vercel looks for. `requirements.txt` is deliberately slim (no pandas/matplotlib) to stay under Vercel's size limit, and `.vercelignore` excludes training files and figures. If you retrain, scikit-learn on Vercel must match the version that saved the model (pinned in `requirements.txt`).
+
+```bash
+npm i -g vercel
+vercel          # preview deploy
+vercel --prod   # production deploy
 ```
 
 Example `predict.py` output:
