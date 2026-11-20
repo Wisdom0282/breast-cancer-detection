@@ -1,0 +1,37 @@
+Data: 569 samples, 30 features, 212 malignant / 357 benign
+
+[1/5] Exploratory analysis
+Train: 455  Test: 114
+
+[2/5] Baseline model comparison (5-fold CV on train set)
+  Logistic Regression    acc=0.974  recall=0.953  f1=0.964  auc=0.996
+  SVM (RBF)              acc=0.976  recall=0.959  f1=0.967  auc=0.995
+  KNN                    acc=0.965  recall=0.918  f1=0.951  auc=0.987
+  Random Forest          acc=0.960  recall=0.935  f1=0.946  auc=0.988
+  Gradient Boosting      acc=0.967  recall=0.947  f1=0.955  auc=0.991
+
+[3/5] Hyperparameter tuning (GridSearchCV, scoring=roc_auc)
+  Logistic Regression    best CV AUC=0.9958  params={'clf__C': 1}
+  SVM (RBF)              best CV AUC=0.9960  params={'clf__estimator__C': 100, 'clf__estimator__gamma': 0.001}
+  Random Forest          best CV AUC=0.9880  params={'clf__max_depth': None, 'clf__max_features': 'sqrt', 'clf__min_samples_leaf': 1}
+
+Selected model (by CV AUC): SVM (RBF)
+
+[4/5] Final evaluation on held-out test set
+
+Test-set report for SVM (RBF)
+              precision    recall  f1-score   support
+
+      Benign      0.960     1.000     0.980        72
+   Malignant      1.000     0.929     0.963        42
+
+    accuracy                          0.974       114
+   macro avg      0.980     0.964     0.971       114
+weighted avg      0.975     0.974     0.973       114
+
+[5/5] Interpretation and saving artefacts
+
+Done. Artefacts:
+  model   -> /home/claude/breast-cancer-detection/models/breast_cancer_model.joblib
+  metrics -> /home/claude/breast-cancer-detection/reports/results.json
+  figures -> /home/claude/breast-cancer-detection/reports/figures

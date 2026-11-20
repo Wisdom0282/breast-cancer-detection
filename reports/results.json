@@ -1,0 +1,145 @@
+{
+  "dataset": {
+    "n_samples": 569,
+    "n_features": 30,
+    "n_benign": 357,
+    "n_malignant": 212,
+    "missing_values": 0,
+    "top_features_by_abs_correlation": {
+      "worst concave points": 0.794,
+      "worst perimeter": 0.783,
+      "mean concave points": 0.777,
+      "worst radius": 0.776,
+      "mean perimeter": 0.743,
+      "worst area": 0.734,
+      "mean radius": 0.73,
+      "mean area": 0.709
+    }
+  },
+  "split": {
+    "train": 455,
+    "test": 114,
+    "stratified": true,
+    "seed": 42
+  },
+  "cv_baseline": [
+    {
+      "model": "Logistic Regression",
+      "accuracy_mean": 0.9736,
+      "accuracy_std": 0.0149,
+      "precision_mean": 0.9771,
+      "precision_std": 0.028,
+      "recall_mean": 0.9529,
+      "recall_std": 0.0399,
+      "f1_mean": 0.964,
+      "f1_std": 0.0207,
+      "roc_auc_mean": 0.9958,
+      "roc_auc_std": 0.0047
+    },
+    {
+      "model": "SVM (RBF)",
+      "accuracy_mean": 0.9758,
+      "accuracy_std": 0.0082,
+      "precision_mean": 0.9773,
+      "precision_std": 0.0209,
+      "recall_mean": 0.9588,
+      "recall_std": 0.0399,
+      "f1_mean": 0.967,
+      "f1_std": 0.012,
+      "roc_auc_mean": 0.9949,
+      "roc_auc_std": 0.005
+    },
+    {
+      "model": "Gradient Boosting",
+      "accuracy_mean": 0.967,
+      "accuracy_std": 0.0139,
+      "precision_mean": 0.9646,
+      "precision_std": 0.0211,
+      "recall_mean": 0.9471,
+      "recall_std": 0.0343,
+      "f1_mean": 0.9553,
+      "f1_std": 0.0196,
+      "roc_auc_mean": 0.9908,
+      "roc_auc_std": 0.0054
+    },
+    {
+      "model": "Random Forest",
+      "accuracy_mean": 0.9604,
+      "accuracy_std": 0.0164,
+      "precision_mean": 0.9584,
+      "precision_std": 0.0221,
+      "recall_mean": 0.9353,
+      "recall_std": 0.039,
+      "f1_mean": 0.9461,
+      "f1_std": 0.0226,
+      "roc_auc_mean": 0.988,
+      "roc_auc_std": 0.0073
+    },
+    {
+      "model": "KNN",
+      "accuracy_mean": 0.9648,
+      "accuracy_std": 0.0189,
+      "precision_mean": 0.9875,
+      "precision_std": 0.025,
+      "recall_mean": 0.9176,
+      "recall_std": 0.0343,
+      "f1_mean": 0.951,
+      "f1_std": 0.0263,
+      "roc_auc_mean": 0.9871,
+      "roc_auc_std": 0.0136
+    }
+  ],
+  "tuned": {
+    "Logistic Regression": {
+      "best_params": {
+        "clf__C": 1
+      },
+      "cv_roc_auc": 0.9958
+    },
+    "SVM (RBF)": {
+      "best_params": {
+        "clf__estimator__C": 100,
+        "clf__estimator__gamma": 0.001
+      },
+      "cv_roc_auc": 0.996
+    },
+    "Random Forest": {
+      "best_params": {
+        "clf__max_depth": null,
+        "clf__max_features": "sqrt",
+        "clf__min_samples_leaf": 1
+      },
+      "cv_roc_auc": 0.988
+    }
+  },
+  "selected_model": "SVM (RBF)",
+  "test_metrics": {
+    "accuracy": 0.9737,
+    "precision_malignant": 1.0,
+    "recall_malignant": 0.9286,
+    "specificity": 1.0,
+    "f1_malignant": 0.963,
+    "roc_auc": 0.9957,
+    "average_precision": 0.994,
+    "confusion_matrix": {
+      "tn": 72,
+      "fp": 0,
+      "fn": 3,
+      "tp": 39
+    }
+  },
+  "top_permutation_importance": {
+    "worst symmetry": 0.0081,
+    "worst texture": 0.008,
+    "worst concavity": 0.0059,
+    "mean concave points": 0.0037,
+    "mean concavity": 0.0036,
+    "texture error": 0.0034,
+    "worst smoothness": 0.0028,
+    "worst radius": 0.0019,
+    "worst area": 0.0016,
+    "worst perimeter": 0.0016,
+    "radius error": 0.0008,
+    "perimeter error": 0.0007
+  }
+}
